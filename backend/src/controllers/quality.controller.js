@@ -1,29 +1,22 @@
 
 
 const { getQuality } = require("../services/quality.service");
+const { asyncHandler } = require("../middlewares/error.middleware");
 
-exports.getQuality = async (req, res) => {
-  try {
-    const { owner, repo } = req.params;
+exports.getQuality = asyncHandler(async (req, res) => {
+  const { owner, repo } = req.params;
 
-    if (!owner || !repo) {
-      return res.status(400).json({
-        success: false,
-        error: "Owner and repo parameters are required"
-      });
-    }
-
-    const qualityData = await getQuality(owner, repo);
-
-    res.json({
-      success: true,
-      data: qualityData
-    });
-  } catch (error) {
-    res.status(500).json({
+  if (!owner || !repo) {
+    return res.status(400).json({
       success: false,
-      error: "Failed to fetch quality data",
-      message: error.message
+      error: "Owner and repo parameters are required"
     });
   }
-};
+
+  const qualityData = await getQuality(owner, repo);
+
+  res.json({
+    success: true,
+    data: qualityData
+  });
+});

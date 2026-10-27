@@ -35,7 +35,9 @@ app.use(generalRateLimit);
 app.use(setCacheHeaders);
 app.use(validateRequest);
 
-if (process.env.NODE_ENV !== "development") {
+// API key validation: only enforce if explicitly required
+const requireApiKey = process.env.REQUIRE_API_KEY === "true" || process.env.NODE_ENV === "production";
+if (requireApiKey) {
   app.use(validateApiKey);
 }
 

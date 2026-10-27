@@ -38,7 +38,10 @@ const calculateHealthScore = (repoData) => {
 
  
   const updatedAt = new Date(repoData.updatedAt || repoData.updated_at);
-  const daysSinceUpdate = (Date.now() - updatedAt) / (1000 * 60 * 60 * 24);
+  const daysSinceUpdate = updatedAt.getTime()
+    ? (Date.now() - updatedAt) / (1000 * 60 * 60 * 24)
+    : 365; // Default to 1 year if date is invalid
+  
   if (daysSinceUpdate < 30) {
     score += 15;
     breakdown.recentlyUpdated = 15;

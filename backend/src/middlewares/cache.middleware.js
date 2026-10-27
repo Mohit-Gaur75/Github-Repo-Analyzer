@@ -14,10 +14,8 @@ const cacheResponse = (ttlSeconds = 600) => {
 
       if (cachedData) {
         console.log(`Cache HIT: ${cacheKey}`);
-        return res.status(200).json({
-          ...cachedData,
-          fromCache: true
-        });
+        // Return cached data directly — it's already a complete response object
+        return res.status(200).json(cachedData);
       }
 
       console.log(`Cache MISS: ${cacheKey}`);
@@ -27,6 +25,7 @@ const cacheResponse = (ttlSeconds = 600) => {
       res.json = async (data) => {
         if (res.statusCode === 200 && data.success) {
           try {
+            // Cache the complete response object
             await Cache.setCache(cacheKey, data, ttlSeconds);
           } catch (cacheError) {
             console.error("Cache write error:", cacheError.message);

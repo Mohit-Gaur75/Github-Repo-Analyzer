@@ -6,13 +6,16 @@ const fetchWithRetry = async (endpoint, retries = 3, delayMs = 2000) => {
   for (let i = 0; i < retries; i++) {
     try {
       const data = await githubRequest(endpoint);
-      if (data && (Array.isArray(data) ? data.length > 0 : true)) {
+      // Accept all valid responses (including empty arrays)
+      // Only retry if API response is completely missing or null
+      if (data !== null && data !== undefined) {
         return data;
       }
       console.log(`Retry ${i + 1}/${retries} for ${endpoint} — GitHub still computing...`);
       await sleep(delayMs);
     } catch (error) {
       if (i === retries - 1) throw error;
+      console.log(`Retry ${i + 1}/${retries} for ${endpoint} — API error...`);
       await sleep(delayMs);
     }
   }
