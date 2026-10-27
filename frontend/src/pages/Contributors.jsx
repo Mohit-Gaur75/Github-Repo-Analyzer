@@ -23,31 +23,33 @@ function Contributors() {
   if (error) return <ErrorMessage message={error} />;
   if (!data) return null;
 
-  if (!data.dataAvailable) {
-  return (
-    <div>
-      <div className="page-header">
-        <h1 className="page-title">👥 Contributors</h1>
-        <p className="page-subtitle">{owner}/{repo}</p>
-      </div>
-      <RepoNav />
-      <div className="card" style={{ textAlign: "center", padding: "60px" }}>
-        <div style={{ fontSize: "48px", marginBottom: "16px" }}>⏳</div>
-        <h3 style={{ marginBottom: "12px" }}>GitHub is computing stats</h3>
-        <p style={{ color: "#586069", marginBottom: "24px" }}>
-          GitHub needs a moment to calculate contributor statistics.
-          Please wait 10–15 seconds and try again.
-        </p>
-        <button
-          className="btn btn-primary"
-          onClick={() => window.location.reload()}
-        >
-          🔄 Refresh
-        </button>
-      </div>
-    </div>
-  );
-}
+    if (!data || !Array.isArray(data.contributors) || data.contributors.length === 0) {
+    if (!data?.dataAvailable) {
+      return (
+        <div>
+          <div className="page-header">
+            <h1 className="page-title">👥 Contributors</h1>
+            <p className="page-subtitle">{owner}/{repo}</p>
+          </div>
+          <RepoNav />
+          <div className="card" style={{ textAlign: "center", padding: "60px" }}>
+            <div style={{ fontSize: "48px", marginBottom: "16px" }}>⏳</div>
+            <h3 style={{ marginBottom: "12px" }}>GitHub is computing stats</h3>
+            <p style={{ color: "#586069", marginBottom: "24px" }}>
+              GitHub needs a moment to calculate contributor statistics.
+              Please wait 10–15 seconds and try again.
+            </p>
+            <button
+              className="btn btn-primary"
+              onClick={() => window.location.reload()}
+            >
+              🔄 Refresh
+            </button>
+          </div>
+        </div>
+      );
+    }
+  }
 
 
 
