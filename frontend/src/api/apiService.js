@@ -66,6 +66,9 @@ export const getActivity = (owner, repo, perPage = 30) =>
 export const compareRepositories = (owner1, repo1, owner2, repo2) =>
   API.get(`/compare/${owner1}/${repo1}/${owner2}/${repo2}`);
 
+export const getUserProfile = (username) =>
+  API.get(`/user/${username}`);
+
 // Returns the SSE URL — used directly with EventSource (not axios)
 export const getActivityStreamUrl = (owner, repo) => {
   const base = import.meta.env.VITE_API_BASE_URL || "http://localhost:5001/api";

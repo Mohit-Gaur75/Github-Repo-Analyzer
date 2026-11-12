@@ -12,6 +12,7 @@ import Security from "./pages/Security";
 import AIInsights from "./pages/AIInsights";
 import Activity from "./pages/Activity";
 import Compare from "./pages/Compare";
+import DeveloperProfile from "./pages/DeveloperProfile";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -68,6 +69,14 @@ function App() {
           <Route
             path="/compare/:owner1/:repo1/:owner2/:repo2"
             element={<Compare />}
+          />
+          <Route
+            path="/user"
+            element={<DeveloperProfile />}
+          />
+          <Route
+            path="/user/:username"
+            element={<DeveloperProfile />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>

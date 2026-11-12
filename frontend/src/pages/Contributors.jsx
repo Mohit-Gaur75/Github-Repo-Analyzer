@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getContributors } from "../api/apiService";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorMessage from "../components/ErrorMessage";
@@ -103,9 +103,14 @@ function Contributors() {
                   <td style={{ color: "#586069", fontWeight: "600" }}>#{i + 1}</td>
                   <td>
                     <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                      <img src={c.avatar} alt={c.login} style={{ width: "32px", height: "32px", borderRadius: "50%" }} />
-                      <a href={c.url} target="_blank" rel="noreferrer" style={{ color: "#0366d6", fontWeight: "600", textDecoration: "none" }}>
+                      <Link to={`/user/${c.login}`} title={`Analyze ${c.login}`}>
+                        <img src={c.avatar} alt={c.login} style={{ width: "32px", height: "32px", borderRadius: "50%" }} />
+                      </Link>
+                      <Link to={`/user/${c.login}`} style={{ color: "#0366d6", fontWeight: "600", textDecoration: "none" }}>
                         {c.login}
+                      </Link>
+                      <a href={c.url} target="_blank" rel="noreferrer" title="Open on GitHub" style={{ color: "#959da5", fontSize: "11px", textDecoration: "none" }}>
+                        ↗
                       </a>
                     </div>
                   </td>

@@ -103,9 +103,21 @@ function Dashboard() {
               <img src={data.owner?.avatar} alt="" style={{ width: "48px", height: "48px", borderRadius: "50%" }} />
               <div>
                 <div style={{ fontWeight: "700" }}>{data.owner?.login}</div>
-                <a href={data.owner?.url} target="_blank" rel="noreferrer" style={{ color: "#0366d6", fontSize: "13px" }}>
-                  View on GitHub →
-                </a>
+                <div style={{ display: "flex", gap: "8px", marginTop: "2px" }}>
+                  <button
+                    onClick={() => navigate(`/user/${data.owner?.login}`)}
+                    style={{
+                      background: "none", border: "none", padding: 0,
+                      color: "#0366d6", fontSize: "13px", cursor: "pointer", fontWeight: "600"
+                    }}
+                  >
+                    👤 Analyze Profile →
+                  </button>
+                  <span style={{ color: "#959da5" }}>·</span>
+                  <a href={data.owner?.url} target="_blank" rel="noreferrer" style={{ color: "#586069", fontSize: "13px" }}>
+                    GitHub ↗
+                  </a>
+                </div>
               </div>
             </div>
           </div>

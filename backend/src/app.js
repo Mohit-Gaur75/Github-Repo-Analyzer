@@ -12,6 +12,7 @@ const securityRoutes = require("./routes/security.routes");
 const aiRoutes = require("./routes/ai.routes");
 const activityRoutes = require("./routes/activity.routes");
 const compareRoutes = require("./routes/compare.routes");
+const userRoutes = require("./routes/user.routes");
 const { errorHandler, notFound } = require("./middlewares/error.middleware");
 const { validateRequest, validateApiKey } = require("./middlewares/auth.middleware");
 const { setCacheHeaders, cacheResponse } = require("./middlewares/cache.middleware");
@@ -88,6 +89,7 @@ app.use("/api/quality", cacheResponse(600), qualityRoutes);
 app.use("/api/security", cacheResponse(600), securityRoutes);
 app.use("/api/ai", cacheResponse(1800), aiRoutes); // AI insights cached 30 min
 app.use("/api/compare", cacheResponse(300), compareRoutes);
+app.use("/api/user", cacheResponse(300), userRoutes);
 // SSE stream route must bypass the cache middleware entirely
 app.use("/api/activity", (req, res, next) => {
   if (req.path.endsWith("/stream")) return next(); // skip cache for SSE

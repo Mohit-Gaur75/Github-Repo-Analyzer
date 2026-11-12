@@ -28,6 +28,9 @@ function Navbar() {
         <Link to="/compare" style={styles.navLink}>
           ⚔️ Compare
         </Link>
+        <Link to="/user" style={styles.navLink}>
+          👤 Dev Profile
+        </Link>
         <form onSubmit={handleSearch} style={styles.form}>
           <input
             type="text"
