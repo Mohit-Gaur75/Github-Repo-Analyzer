@@ -75,6 +75,9 @@ export const getUserProfile = (username) =>
 export const getRepoTrend = (owner, repo) =>
   API.get(`/trend/${owner}/${repo}`);
 
+export const getTechStack = (owner, repo) =>
+  API.get(`/techstack/${owner}/${repo}`);
+
 // Returns the SSE URL — used directly with EventSource (not axios)
 export const getActivityStreamUrl = (owner, repo) => {
   const base = import.meta.env.VITE_API_BASE_URL || "http://localhost:5001/api";

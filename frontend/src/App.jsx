@@ -12,6 +12,7 @@ import Security from "./pages/Security";
 import AIInsights from "./pages/AIInsights";
 import Activity from "./pages/Activity";
 import Trends from "./pages/Trends";
+import TechStack from "./pages/TechStack";
 import Compare from "./pages/Compare";
 import DeveloperProfile from "./pages/DeveloperProfile";
 import NotFound from "./pages/NotFound";
@@ -30,6 +31,10 @@ function App() {
           <Route
             path="/languages/:owner/:repo"
             element={<Languages />}
+          />
+          <Route
+            path="/techstack/:owner/:repo"
+            element={<TechStack />}
           />
           <Route
             path="/commits/:owner/:repo"

@@ -6,6 +6,7 @@ function RepoNav() {
   const links = [
     { to: `/dashboard/${owner}/${repo}`, label: "📋 Overview" },
     { to: `/languages/${owner}/${repo}`, label: "🌐 Languages" },
+    { to: `/techstack/${owner}/${repo}`, label: "🛠️ Tech Stack" },
     { to: `/commits/${owner}/${repo}`, label: "📝 Commits" },
     { to: `/contributors/${owner}/${repo}`, label: "👥 Contributors" },
     { to: `/issues/${owner}/${repo}`, label: "🐛 Issues" },

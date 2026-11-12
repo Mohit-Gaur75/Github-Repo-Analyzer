@@ -126,6 +126,7 @@ function Dashboard() {
             <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "12px" }}>
               {[
                 { label: "Languages", path: `/languages/${owner}/${repo}` },
+                { label: "🛠️ Tech Stack", path: `/techstack/${owner}/${repo}` },
                 { label: "Commits", path: `/commits/${owner}/${repo}` },
                 { label: "Contributors", path: `/contributors/${owner}/${repo}` },
                 { label: "Security", path: `/security/${owner}/${repo}` },
