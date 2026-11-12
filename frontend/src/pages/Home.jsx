@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { parseGitHubUrl, formatNumber, timeAgo } from "../utils/helpers";
 import { getRecentRepos } from "../api/apiService";
+import WatchlistButton from "../components/WatchlistButton";
 
 function Home() {
   const [input, setInput] = useState("");
@@ -106,7 +107,10 @@ function Home() {
                   navigate(`/dashboard/${owner}/${name}`);
                 }}
               >
-                <div style={styles.recentName}>{repo.fullName}</div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px", marginBottom: "6px" }}>
+                  <div style={styles.recentName}>{repo.fullName}</div>
+                  <WatchlistButton repoData={repo} size="sm" />
+                </div>
                 <div style={styles.recentDesc}>
                   {repo.description?.substring(0, 60) || "No description"}
                   {repo.description?.length > 60 ? "..." : ""}

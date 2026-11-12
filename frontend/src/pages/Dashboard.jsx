@@ -5,6 +5,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorMessage from "../components/ErrorMessage";
 import RepoNav from "../components/RepoNav";
 import StatCard from "../components/StatCard";
+import WatchlistButton from "../components/WatchlistButton";
 import { formatNumber, formatDate, timeAgo } from "../utils/helpers";
 
 function Dashboard() {
@@ -38,12 +39,15 @@ function Dashboard() {
             style={{ width: "64px", height: "64px", borderRadius: "50%", border: "2px solid #e1e4e8" }}
           />
           <div style={{ flex: 1 }}>
-            <h1 style={{ fontSize: "24px", fontWeight: "700", marginBottom: "6px" }}>
-              <a href={data.url} target="_blank" rel="noreferrer" style={{ color: "#0366d6", textDecoration: "none" }}>
-                {data.fullName}
-              </a>
-            </h1>
-            <p style={{ color: "#586069", fontSize: "15px", marginBottom: "12px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "10px", marginBottom: "6px" }}>
+              <h1 style={{ fontSize: "24px", fontWeight: "700", margin: 0 }}>
+                <a href={data.url} target="_blank" rel="noreferrer" style={{ color: "var(--primary)", textDecoration: "none" }}>
+                  {data.fullName}
+                </a>
+              </h1>
+              <WatchlistButton repoData={data} />
+            </div>
+            <p style={{ color: "var(--text-secondary)", fontSize: "15px", marginBottom: "12px" }}>
               {data.description || "No description provided"}
             </p>
             <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>

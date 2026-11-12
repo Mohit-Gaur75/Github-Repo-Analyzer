@@ -2,11 +2,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { parseGitHubUrl } from "../utils/helpers";
 import ThemeToggle from "./ThemeToggle";
+import { useWatchlist } from "../context/watchlistContext";
 
 function Navbar() {
   const [search, setSearch] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { count } = useWatchlist();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -31,6 +33,10 @@ function Navbar() {
         </Link>
         <Link to="/user" style={styles.navLink}>
           👤 Dev Profile
+        </Link>
+        <Link to="/watchlist" style={styles.navLink}>
+          🔖 Watchlist
+          {count > 0 && <span style={styles.counter}>{count}</span>}
         </Link>
         <form onSubmit={handleSearch} style={styles.form}>
           <input
@@ -85,7 +91,18 @@ const styles = {
     borderRadius: "6px",
     backgroundColor: "rgba(255, 255, 255, 0.1)",
     transition: "background 0.2s",
-    whiteSpace: "nowrap"
+    whiteSpace: "nowrap",
+    display: "inline-flex",
+    alignItems: "center"
+  },
+  counter: {
+    backgroundColor: "#f4a900",
+    color: "#000000",
+    borderRadius: "10px",
+    padding: "1px 6px",
+    fontSize: "11px",
+    fontWeight: "700",
+    marginLeft: "6px"
   },
   form: {
     display: "flex",

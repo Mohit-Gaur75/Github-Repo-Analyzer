@@ -17,6 +17,7 @@ import Releases from "./pages/Releases";
 import Report from "./pages/Report";
 import Compare from "./pages/Compare";
 import DeveloperProfile from "./pages/DeveloperProfile";
+import Watchlist from "./pages/Watchlist";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -97,6 +98,10 @@ function App() {
           <Route
             path="/user/:username"
             element={<DeveloperProfile />}
+          />
+          <Route
+            path="/watchlist"
+            element={<Watchlist />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
