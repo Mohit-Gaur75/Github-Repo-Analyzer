@@ -142,13 +142,22 @@ function Dashboard() {
                 </button>
               ))}
             </div>
-            <button
-              className="btn btn-primary btn-sm"
-              style={{ width: "100%", justifyContent: "center" }}
-              onClick={() => navigate(`/compare/${owner}/${repo}/vuejs/core`)}
-            >
-              ⚔️ Compare with another repo
-            </button>
+            <div style={{ display: "flex", gap: "8px", flexDirection: "column" }}>
+              <button
+                className="btn btn-primary btn-sm"
+                style={{ width: "100%", justifyContent: "center" }}
+                onClick={() => navigate(`/report/${owner}/${repo}`)}
+              >
+                📑 Export Audit Report (PDF / Markdown)
+              </button>
+              <button
+                className="btn btn-secondary btn-sm"
+                style={{ width: "100%", justifyContent: "center" }}
+                onClick={() => navigate(`/compare/${owner}/${repo}/vuejs/core`)}
+              >
+                ⚔️ Compare with another repo
+              </button>
+            </div>
           </div>
         </div>
       </div>

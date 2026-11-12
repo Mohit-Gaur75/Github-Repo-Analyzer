@@ -14,6 +14,7 @@ import Activity from "./pages/Activity";
 import Trends from "./pages/Trends";
 import TechStack from "./pages/TechStack";
 import Releases from "./pages/Releases";
+import Report from "./pages/Report";
 import Compare from "./pages/Compare";
 import DeveloperProfile from "./pages/DeveloperProfile";
 import NotFound from "./pages/NotFound";
@@ -76,6 +77,10 @@ function App() {
           <Route
             path="/trends/:owner/:repo"
             element={<Trends />}
+          />
+          <Route
+            path="/report/:owner/:repo"
+            element={<Report />}
           />
           <Route
             path="/compare"
