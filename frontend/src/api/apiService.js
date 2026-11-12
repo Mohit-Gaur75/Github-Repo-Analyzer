@@ -63,6 +63,9 @@ export const getAIInsights = (owner, repo) =>
 export const getActivity = (owner, repo, perPage = 30) =>
   API.get(`/activity/${owner}/${repo}?per_page=${perPage}`);
 
+export const compareRepositories = (owner1, repo1, owner2, repo2) =>
+  API.get(`/compare/${owner1}/${repo1}/${owner2}/${repo2}`);
+
 // Returns the SSE URL — used directly with EventSource (not axios)
 export const getActivityStreamUrl = (owner, repo) => {
   const base = import.meta.env.VITE_API_BASE_URL || "http://localhost:5001/api";

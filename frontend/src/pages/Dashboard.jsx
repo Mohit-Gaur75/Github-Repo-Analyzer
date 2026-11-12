@@ -111,21 +111,29 @@ function Dashboard() {
           </div>
           <div style={{ marginTop: "20px" }}>
             <h4 style={{ marginBottom: "12px", fontSize: "15px" }}>🚀 Quick Analysis</h4>
-            {[
-              { label: "Languages", path: `/languages/${owner}/${repo}` },
-              { label: "Commits", path: `/commits/${owner}/${repo}` },
-              { label: "Contributors", path: `/contributors/${owner}/${repo}` },
-              { label: "Security", path: `/security/${owner}/${repo}` }
-            ].map((item) => (
-              <button
-                key={item.label}
-                className="btn btn-secondary btn-sm"
-                style={{ margin: "4px" }}
-                onClick={() => navigate(item.path)}
-              >
-                {item.label}
-              </button>
-            ))}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "12px" }}>
+              {[
+                { label: "Languages", path: `/languages/${owner}/${repo}` },
+                { label: "Commits", path: `/commits/${owner}/${repo}` },
+                { label: "Contributors", path: `/contributors/${owner}/${repo}` },
+                { label: "Security", path: `/security/${owner}/${repo}` }
+              ].map((item) => (
+                <button
+                  key={item.label}
+                  className="btn btn-secondary btn-sm"
+                  onClick={() => navigate(item.path)}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+            <button
+              className="btn btn-primary btn-sm"
+              style={{ width: "100%", justifyContent: "center" }}
+              onClick={() => navigate(`/compare/${owner}/${repo}/vuejs/core`)}
+            >
+              ⚔️ Compare with another repo
+            </button>
           </div>
         </div>
       </div>

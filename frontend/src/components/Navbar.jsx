@@ -25,6 +25,9 @@ function Navbar() {
         <Link to="/" style={styles.logo}>
           📊 GitHub Analyzer
         </Link>
+        <Link to="/compare" style={styles.navLink}>
+          ⚔️ Compare
+        </Link>
         <form onSubmit={handleSearch} style={styles.form}>
           <input
             type="text"
@@ -65,6 +68,17 @@ const styles = {
     textDecoration: "none",
     fontSize: "20px",
     fontWeight: "700",
+    whiteSpace: "nowrap"
+  },
+  navLink: {
+    color: "#e1e4e8",
+    textDecoration: "none",
+    fontSize: "14px",
+    fontWeight: "600",
+    padding: "6px 12px",
+    borderRadius: "6px",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    transition: "background 0.2s",
     whiteSpace: "nowrap"
   },
   form: {
