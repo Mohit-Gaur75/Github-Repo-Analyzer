@@ -1,4 +1,4 @@
-const { githubRequest, githubRequestSafe } = require("../utils/githubApi");
+const { githubRequest } = require("../utils/githubApi");
 
 // Map GitHub event types to human-readable labels + icons
 const EVENT_MAP = {

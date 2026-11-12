@@ -63,9 +63,9 @@ const generateAIAnalysis = async (repoData, fullAnalysis) => {
   const ai = new GoogleGenAI({ apiKey });
 
   const {
-    name, full_name, description, stargazers_count, forks_count,
+    full_name, description, stargazers_count, forks_count,
     language, created_at, updated_at, open_issues_count, topics = [],
-    license, visibility, has_wiki, has_issues
+    license, visibility, has_wiki
   } = repoData;
 
   const ageInYears = ((Date.now() - new Date(created_at)) / (1000 * 60 * 60 * 24 * 365)).toFixed(1);

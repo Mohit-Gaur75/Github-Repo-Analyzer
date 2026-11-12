@@ -4,6 +4,7 @@ import { getActivity, getActivityStreamUrl } from "../api/apiService";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorMessage from "../components/ErrorMessage";
 import RepoNav from "../components/RepoNav";
+import { timeAgo } from "../utils/helpers";
 
 // ─── Event type color dot ─────────────────────────────────────────────────────
 function EventDot({ color }) {
@@ -21,16 +22,6 @@ function EventDot({ color }) {
 
 // ─── Single event row ─────────────────────────────────────────────────────────
 function EventRow({ ev, isNew }) {
-  const timeAgo = (dateStr) => {
-    const diff = Date.now() - new Date(dateStr).getTime();
-    const m = Math.floor(diff / 60000);
-    if (m < 1) return "just now";
-    if (m < 60) return `${m}m ago`;
-    const h = Math.floor(m / 60);
-    if (h < 24) return `${h}h ago`;
-    return `${Math.floor(h / 24)}d ago`;
-  };
-
   return (
     <div style={{
       display: "flex", gap: 12, padding: "12px 16px",

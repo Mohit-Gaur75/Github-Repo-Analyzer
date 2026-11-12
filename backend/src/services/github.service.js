@@ -1,7 +1,5 @@
 const { githubRequest, githubRequestSafe } = require("../utils/githubApi");
 
-const GITHUB_BASE_URL = "https://api.github.com";
-
 exports.getRepoDetails = async (owner, repo) => {
   try {
     const data = await githubRequest(`/repos/${owner}/${repo}`);

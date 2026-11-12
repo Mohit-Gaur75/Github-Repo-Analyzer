@@ -1,16 +1,10 @@
 const { githubRequestSafe } = require("../utils/githubApi");
-const { scanForSecrets, getSeverityScore } = require("../utils/secretScanner");
 
 exports.getSecurity = async (owner, repo) => {
   try {
-    const [repoData, contents, topics] = await Promise.all([
+    const [repoData, contents] = await Promise.all([
       githubRequestSafe(`/repos/${owner}/${repo}`),
-      githubRequestSafe(`/repos/${owner}/${repo}/contents`),
-      githubRequestSafe(`/repos/${owner}/${repo}/topics`, {
-        headers: {
-          Accept: "application/vnd.github.mercy-preview+json"
-        }
-      })
+      githubRequestSafe(`/repos/${owner}/${repo}/contents`)
     ]);
 
     const files = (contents || []).map((f) => f.name.toLowerCase());

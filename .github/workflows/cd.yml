@@ -1,0 +1,165 @@
+name: 🚀 CD — Deploy to Production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:        # Allow manual trigger from GitHub UI
+    inputs:
+      environment:
+        description: "Target environment"
+        required: true
+        default: "production"
+        type: choice
+        options: [production, staging]
+
+# Only run one deploy at a time
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  # ─── Re-run CI before deploying ───────────────────────────────────────────
+  pre-deploy-check:
+    name: 🔎 Pre-deploy Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: ✅ Backend syntax check
+        working-directory: backend
+        run: |
+          npm ci --omit=dev
+          find src -name "*.js" | xargs -I{} node --check {}
+
+      - name: ✅ Frontend build
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+        env:
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
+
+  # ─── Deploy Backend ───────────────────────────────────────────────────────
+  deploy-backend:
+    name: 🛠 Deploy Backend
+    runs-on: ubuntu-latest
+    needs: pre-deploy-check
+    environment:
+      name: production
+      url: ${{ vars.BACKEND_URL }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # ── Option A: Render (uncomment + add RENDER_DEPLOY_HOOK_BACKEND secret)
+      # - name: 🚀 Trigger Render deploy
+      #   run: |
+      #     curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_BACKEND }}"
+
+      # ── Option B: Railway (uncomment + install railway CLI)
+      # - name: 🚀 Deploy to Railway
+      #   uses: bervProject/railway-deploy@main
+      #   with:
+      #     railway_token: ${{ secrets.RAILWAY_TOKEN }}
+      #     service: github-analyzer-backend
+
+      # ── Option C: VPS / Self-hosted (SSH deploy)
+      # - name: 🚀 SSH Deploy
+      #   uses: appleboy/ssh-action@v1
+      #   with:
+      #     host: ${{ secrets.SSH_HOST }}
+      #     username: ${{ secrets.SSH_USER }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #       cd /opt/github-analyzer/backend
+      #       git pull origin main
+      #       npm ci --omit=dev
+      #       pm2 restart github-analyzer-backend
+
+      - name: ℹ️ Deploy step (configure your platform above)
+        run: |
+          echo "⚠️  No deployment platform configured yet."
+          echo "    Uncomment one of the options in cd.yml that matches your hosting."
+          echo "    Then add the required secrets in GitHub → Settings → Secrets."
+
+  # ─── Deploy Frontend ──────────────────────────────────────────────────────
+  deploy-frontend:
+    name: ⚛️ Deploy Frontend
+    runs-on: ubuntu-latest
+    needs: pre-deploy-check
+    environment:
+      name: production
+      url: ${{ vars.FRONTEND_URL }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: 📦 Install & Build
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+        env:
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
+          VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+
+      # ── Option A: Vercel
+      # - name: 🚀 Deploy to Vercel
+      #   uses: amondnet/vercel-action@v25
+      #   with:
+      #     vercel-token: ${{ secrets.VERCEL_TOKEN }}
+      #     vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+      #     vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+      #     working-directory: frontend
+      #     vercel-args: "--prod"
+
+      # ── Option B: Netlify
+      # - name: 🚀 Deploy to Netlify
+      #   uses: netlify/actions/cli@master
+      #   with:
+      #     args: deploy --dir=frontend/dist --prod
+      #   env:
+      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+      # ── Option C: GitHub Pages
+      # - name: 🚀 Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v4
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: frontend/dist
+
+      - name: ℹ️ Deploy step (configure your platform above)
+        run: |
+          echo "⚠️  No deployment platform configured yet."
+          echo "    Uncomment one of the options in cd.yml that matches your hosting."
+
+  # ─── Notify on success ────────────────────────────────────────────────────
+  notify:
+    name: 📣 Deployment Summary
+    runs-on: ubuntu-latest
+    needs: [deploy-backend, deploy-frontend]
+    if: always()
+    steps:
+      - name: 📊 Print deploy summary
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "  🚀 Deployment Summary"
+          echo "  Commit : ${{ github.sha }}"
+          echo "  Branch : ${{ github.ref_name }}"
+          echo "  Actor  : ${{ github.actor }}"
+          echo "  Backend: ${{ needs.deploy-backend.result }}"
+          echo "  Frontend: ${{ needs.deploy-frontend.result }}"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

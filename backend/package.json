@@ -1,11 +1,15 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "GitHub Repo Analyzer - Backend API",
+  "main": "src/server.js",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "lint": "eslint src/**/*.js --max-warnings=0",
+    "lint:fix": "eslint src/**/*.js --fix",
+    "check": "node --check src/server.js && node --check src/app.js",
+    "test": "echo \"Tests not yet configured\" && exit 0"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +25,9 @@
     "mongoose": "^9.3.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "eslint": "^9.39.5",
+    "globals": "^15.15.0",
     "nodemon": "^3.1.11"
   }
 }

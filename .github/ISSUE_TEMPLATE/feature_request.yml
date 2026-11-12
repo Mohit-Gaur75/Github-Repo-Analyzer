@@ -1,0 +1,32 @@
+name: ✨ Feature Request
+description: Suggest a new feature or enhancement
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 🔍 What problem does this solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: 💡 Describe the solution
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 📍 Feature area
+      options:
+        - AI / Insights
+        - Analytics / Charts
+        - Security
+        - Performance
+        - UI / UX
+        - New Integration
+        - Other
+    validations:
+      required: true

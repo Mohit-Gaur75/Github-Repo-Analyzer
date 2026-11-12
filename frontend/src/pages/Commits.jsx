@@ -4,7 +4,7 @@ import { getCommits } from "../api/apiService";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorMessage from "../components/ErrorMessage";
 import RepoNav from "../components/RepoNav";
-import { formatNumber, formatDate, timeAgo } from "../utils/helpers";
+import { formatNumber, timeAgo } from "../utils/helpers";
 
 function Commits() {
   const { owner, repo } = useParams();

@@ -50,7 +50,6 @@ const setCacheHeaders = (req, res, next) => {
 
 const clearCacheForRepo = async (owner, repo) => {
   try {
-    const pattern = `route_/api`;
     await Cache.deleteMany({
       key: { $regex: `${owner}/${repo}` }
     });

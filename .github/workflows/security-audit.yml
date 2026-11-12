@@ -1,0 +1,47 @@
+name: 🔒 Security Audit
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"   # Every Monday at 8:00 AM UTC
+  push:
+    paths:
+      - "**/package-lock.json"
+      - "**/package.json"
+  workflow_dispatch:
+
+jobs:
+  audit:
+    name: 🔍 npm audit
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        workspace: [backend, frontend]
+
+    defaults:
+      run:
+        working-directory: ${{ matrix.workspace }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: 📦 Install
+        run: npm ci
+
+      - name: 🔒 Audit (${{ matrix.workspace }})
+        run: npm audit --audit-level=moderate --json > audit-report.json || true
+
+      - name: 📋 Print audit summary
+        run: npm audit --audit-level=moderate || true
+
+      - name: 📤 Upload audit report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: audit-${{ matrix.workspace }}
+          path: ${{ matrix.workspace }}/audit-report.json
+          retention-days: 30
