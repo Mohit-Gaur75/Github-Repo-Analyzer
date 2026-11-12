@@ -176,30 +176,31 @@ const styles = {
     marginBottom: "40px"
   },
   featureCard: {
-    background: "#fff",
-    border: "1px solid #e1e4e8",
+    background: "var(--bg-primary)",
+    border: "1px solid var(--border)",
     borderRadius: "12px",
     padding: "20px",
     textAlign: "center",
-    boxShadow: "0 1px 3px rgba(0,0,0,0.08)"
+    boxShadow: "var(--shadow-sm)"
   },
   featureIcon: { fontSize: "28px", marginBottom: "8px" },
-  featureTitle: { fontSize: "15px", fontWeight: "600", marginBottom: "6px" },
-  featureDesc: { fontSize: "13px", color: "#586069" },
+  featureTitle: { fontSize: "15px", fontWeight: "600", marginBottom: "6px", color: "var(--text-primary)" },
+  featureDesc: { fontSize: "13px", color: "var(--text-secondary)" },
   recentSection: { marginBottom: "40px" },
-  recentTitle: { fontSize: "20px", fontWeight: "700", marginBottom: "16px" },
+  recentTitle: { fontSize: "20px", fontWeight: "700", marginBottom: "16px", color: "var(--text-primary)" },
   recentGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "12px" },
   recentCard: {
-    background: "#fff",
-    border: "1px solid #e1e4e8",
+    background: "var(--bg-primary)",
+    border: "1px solid var(--border)",
     borderRadius: "10px",
     padding: "16px",
     cursor: "pointer",
-    transition: "all 0.2s"
+    transition: "all 0.2s",
+    boxShadow: "var(--shadow-sm)"
   },
-  recentName: { fontWeight: "700", fontSize: "14px", color: "#0366d6", marginBottom: "6px" },
-  recentDesc: { fontSize: "13px", color: "#586069", marginBottom: "10px" },
-  recentMeta: { display: "flex", gap: "12px", fontSize: "12px", color: "#959da5" }
+  recentName: { fontWeight: "700", fontSize: "14px", color: "var(--primary)", marginBottom: "6px" },
+  recentDesc: { fontSize: "13px", color: "var(--text-secondary)", marginBottom: "10px" },
+  recentMeta: { display: "flex", gap: "12px", fontSize: "12px", color: "var(--text-muted)" }
 };
 
 export default Home;

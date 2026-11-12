@@ -105,10 +105,10 @@ function AIInsights() {
       <div className="grid-2" style={{ marginBottom: 24 }}>
         <div className="card">
           <h3 className="card-title">📋 What is this repo?</h3>
-          <p style={{ lineHeight: 1.7, color: "#444", marginBottom: 12 }}>{data.summary}</p>
-          <div style={{ padding: "10px 14px", background: "#f6f8fa", borderRadius: 8, borderLeft: "3px solid #0366d6" }}>
-            <strong style={{ fontSize: 12, color: "#586069" }}>TARGET AUDIENCE</strong>
-            <p style={{ margin: "4px 0 0", fontSize: 14 }}>{data.targetAudience}</p>
+          <p style={{ lineHeight: 1.7, color: "var(--text-primary)", marginBottom: 12 }}>{data.summary}</p>
+          <div style={{ padding: "10px 14px", background: "var(--bg-tertiary)", borderRadius: 8, borderLeft: "3px solid var(--primary)" }}>
+            <strong style={{ fontSize: 12, color: "var(--text-secondary)" }}>TARGET AUDIENCE</strong>
+            <p style={{ margin: "4px 0 0", fontSize: 14, color: "var(--text-primary)" }}>{data.targetAudience}</p>
           </div>
         </div>
 
@@ -118,16 +118,16 @@ function AIInsights() {
             {(data.techStack || []).map((tech) => (
               <span key={tech} style={{
                 padding: "4px 12px", borderRadius: 20,
-                background: "#e8f4fd", color: "#0366d6",
+                background: "var(--primary-light)", color: "var(--primary)",
                 fontSize: 13, fontWeight: 600
               }}>{tech}</span>
             ))}
           </div>
-          <p style={{ fontSize: 13, color: "#586069" }}><strong>Purpose:</strong> {data.purpose}</p>
+          <p style={{ fontSize: 13, color: "var(--text-secondary)" }}><strong>Purpose:</strong> {data.purpose}</p>
           {data.funFact && (
-            <div style={{ marginTop: 12, padding: "8px 12px", background: "#fff8e1", borderRadius: 8, borderLeft: "3px solid #f4a900" }}>
-              <span style={{ fontSize: 12, fontWeight: 700, color: "#856404" }}>💡 FUN FACT</span>
-              <p style={{ margin: "4px 0 0", fontSize: 13 }}>{data.funFact}</p>
+            <div style={{ marginTop: 12, padding: "8px 12px", background: "var(--badge-warning-bg)", borderRadius: 8, borderLeft: "3px solid var(--warning)" }}>
+              <span style={{ fontSize: 12, fontWeight: 700, color: "var(--badge-warning-text)" }}>💡 FUN FACT</span>
+              <p style={{ margin: "4px 0 0", fontSize: 13, color: "var(--text-primary)" }}>{data.funFact}</p>
             </div>
           )}
         </div>
@@ -181,8 +181,8 @@ function AIInsights() {
               <div key={i} style={{
                 display: "flex", gap: 12, alignItems: "flex-start",
                 padding: "12px 16px", borderRadius: 10,
-                background: rec.priority === "high" ? "#fff5f5" : rec.priority === "medium" ? "#fffbf0" : "#f0fff4",
-                border: `1px solid ${priorityColor[rec.priority] || "#e1e4e8"}22`
+                background: rec.priority === "high" ? "var(--badge-danger-bg)" : rec.priority === "medium" ? "var(--badge-warning-bg)" : "var(--badge-success-bg)",
+                border: `1px solid ${priorityColor[rec.priority] || "var(--border)"}44`
               }}>
                 <span style={{
                   padding: "2px 8px", borderRadius: 12, fontSize: 11, fontWeight: 700,
@@ -191,7 +191,7 @@ function AIInsights() {
                 }}>
                   {rec.priority?.toUpperCase()}
                 </span>
-                <span style={{ fontSize: 14, lineHeight: 1.6 }}>{rec.action}</span>
+                <span style={{ fontSize: 14, lineHeight: 1.6, color: "var(--text-primary)" }}>{rec.action}</span>
               </div>
             ))}
           </div>

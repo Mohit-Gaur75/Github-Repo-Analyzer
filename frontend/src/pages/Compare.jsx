@@ -143,9 +143,9 @@ function Compare() {
               type="button"
               onClick={() => handlePreset(p)}
               style={{
-                background: "#f6f8fa", border: "1px solid #d1d5da",
+                background: "var(--bg-tertiary)", border: "1px solid var(--border)",
                 borderRadius: "16px", padding: "4px 12px", fontSize: "12px",
-                cursor: "pointer", fontWeight: "500", color: "#24292e"
+                cursor: "pointer", fontWeight: "500", color: "var(--text-primary)"
               }}
             >
               {p.label}
@@ -280,9 +280,9 @@ function Compare() {
 
           {/* Head-to-Head Comparison Table */}
           <div className="card" style={{ marginBottom: "24px", padding: 0, overflow: "hidden" }}>
-            <div style={{ padding: "16px 20px", borderBottom: "1px solid #e1e4e8", backgroundColor: "#f8f9fa", display: "flex", justifyContent: "space-between" }}>
-              <h3 style={{ margin: 0, fontSize: "16px", fontWeight: "700" }}>📊 Head-to-Head Metrics</h3>
-              <span style={{ fontSize: "12px", color: "#586069" }}>
+            <div style={{ padding: "16px 20px", borderBottom: "1px solid var(--border)", backgroundColor: "var(--bg-tertiary)", display: "flex", justifyContent: "space-between" }}>
+              <h3 style={{ margin: 0, fontSize: "16px", fontWeight: "700", color: "var(--text-primary)" }}>📊 Head-to-Head Metrics</h3>
+              <span style={{ fontSize: "12px", color: "var(--text-secondary)" }}>
                 ⭐ Blue = {data.repo1.name} · Purple = {data.repo2.name}
               </span>
             </div>

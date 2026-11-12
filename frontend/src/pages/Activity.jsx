@@ -243,12 +243,12 @@ function Activity() {
                 target="_blank" rel="noreferrer"
                 style={{ display: "flex", alignItems: "center", gap: 8,
                   padding: "6px 12px", borderRadius: 20,
-                  background: "#f6f8fa", border: "1px solid #e1e4e8",
-                  textDecoration: "none", color: "#24292e", fontSize: 13 }}>
+                  background: "var(--bg-tertiary)", border: "1px solid var(--border)",
+                  textDecoration: "none", color: "var(--text-primary)", fontSize: 13 }}>
                 <img src={`https://github.com/${c.login}.png?size=24`}
                   alt={c.login} style={{ width: 20, height: 20, borderRadius: "50%" }} />
                 <strong>{c.login}</strong>
-                <span style={{ background: "#0366d6", color: "#fff",
+                <span style={{ background: "var(--primary)", color: "#fff",
                   borderRadius: 10, padding: "1px 7px", fontSize: 11 }}>
                   {c.count}
                 </span>
@@ -260,7 +260,7 @@ function Activity() {
 
       {/* Event list */}
       <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-        <div style={{ padding: "14px 16px", borderBottom: "1px solid #e1e4e8",
+        <div style={{ padding: "14px 16px", borderBottom: "1px solid var(--border)",
           display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <span style={{ fontWeight: 600, fontSize: 15 }}>
             📋 Event Timeline

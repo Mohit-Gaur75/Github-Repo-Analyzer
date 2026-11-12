@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { parseGitHubUrl } from "../utils/helpers";
+import ThemeToggle from "./ThemeToggle";
 
 function Navbar() {
   const [search, setSearch] = useState("");
@@ -43,6 +44,7 @@ function Navbar() {
             🔍 Analyze
           </button>
         </form>
+        <ThemeToggle />
       </div>
       {error && <div style={styles.error}>{error}</div>}
     </nav>
@@ -51,9 +53,10 @@ function Navbar() {
 
 const styles = {
   nav: {
-    backgroundColor: "#24292e",
+    backgroundColor: "var(--nav-bg, #24292e)",
     padding: "12px 24px",
     boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+    borderBottom: "1px solid var(--border, #30363d)",
     position: "sticky",
     top: 0,
     zIndex: 100

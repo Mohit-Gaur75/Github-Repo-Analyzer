@@ -68,8 +68,8 @@ function DeveloperProfile() {
               placeholder="Enter GitHub username (e.g. torvalds)..."
               style={{
                 flex: 1, padding: "12px 16px", borderRadius: "8px",
-                border: "1px solid #ced4da", fontSize: "14px", outline: "none",
-                backgroundColor: "#ffffff"
+                border: "1px solid var(--border)", fontSize: "14px", outline: "none",
+                backgroundColor: "var(--bg-primary)"
               }}
             />
             <button type="submit" className="btn btn-primary" style={{ padding: "12px 20px" }}>
@@ -79,16 +79,16 @@ function DeveloperProfile() {
 
           {/* Quick presets */}
           <div style={{ marginTop: "10px", display: "flex", gap: "6px", justifyContent: "center", flexWrap: "wrap" }}>
-            <span style={{ fontSize: "12px", color: "#586069", alignSelf: "center" }}>Popular:</span>
+            <span style={{ fontSize: "12px", color: "var(--text-secondary)", alignSelf: "center" }}>Popular:</span>
             {POPULAR_USERS.map((u) => (
               <button
                 key={u.username}
                 type="button"
                 onClick={() => handleSelectUser(u.username)}
                 style={{
-                  background: activeUser === u.username ? "#0366d6" : "#f6f8fa",
-                  color: activeUser === u.username ? "#ffffff" : "#24292e",
-                  border: "1px solid #d1d5da",
+                  background: activeUser === u.username ? "var(--primary)" : "var(--bg-tertiary)",
+                  color: activeUser === u.username ? "#ffffff" : "var(--text-primary)",
+                  border: "1px solid var(--border)",
                   borderRadius: "14px",
                   padding: "3px 10px",
                   fontSize: "12px",
@@ -283,7 +283,8 @@ function DeveloperProfile() {
                         style={{
                           display: "flex", alignItems: "center", gap: "6px",
                           padding: "4px 10px", borderRadius: "16px",
-                          border: "1px solid #e1e4e8", background: "#f8f9fa",
+                          border: "1px solid var(--border)", background: "var(--bg-tertiary)",
+                          color: "var(--text-primary)",
                           cursor: "pointer", fontSize: "12px", fontWeight: "600"
                         }}
                       >
@@ -307,21 +308,21 @@ function DeveloperProfile() {
                 <div
                   key={repo.fullName}
                   style={{
-                    border: "1px solid #e1e4e8", borderRadius: "10px", padding: "16px",
+                    border: "1px solid var(--border)", borderRadius: "10px", padding: "16px",
                     display: "flex", flexDirection: "column", justifyContent: "space-between",
-                    backgroundColor: "#ffffff", boxShadow: "0 1px 3px rgba(0,0,0,0.04)"
+                    backgroundColor: "var(--bg-primary)", boxShadow: "var(--shadow-sm)"
                   }}
                 >
                   <div>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px", marginBottom: "6px" }}>
                       <h4 style={{ fontSize: "15px", fontWeight: "700", margin: 0 }}>
-                        <a href={repo.url} target="_blank" rel="noreferrer" style={{ color: "#0366d6", textDecoration: "none" }}>
+                        <a href={repo.url} target="_blank" rel="noreferrer" style={{ color: "var(--primary)", textDecoration: "none" }}>
                           {repo.name}
                         </a>
                       </h4>
                       {repo.isFork && <span className="badge badge-secondary" style={{ fontSize: "10px" }}>Fork</span>}
                     </div>
-                    <p style={{ fontSize: "12px", color: "#586069", minHeight: "36px", marginBottom: "12px" }}>
+                    <p style={{ fontSize: "12px", color: "var(--text-secondary)", minHeight: "36px", marginBottom: "12px" }}>
                       {repo.description ? repo.description.substring(0, 85) + (repo.description.length > 85 ? "..." : "") : "No description provided."}
                     </p>
                   </div>

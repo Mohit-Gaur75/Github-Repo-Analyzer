@@ -46,11 +46,11 @@ const styles = {
     gap: "4px",
     flexWrap: "wrap",
     marginBottom: "24px",
-    backgroundColor: "#ffffff",
+    backgroundColor: "var(--bg-primary)",
     padding: "8px",
     borderRadius: "10px",
-    border: "1px solid #e1e4e8",
-    boxShadow: "0 1px 3px rgba(0,0,0,0.1)"
+    border: "1px solid var(--border)",
+    boxShadow: "var(--shadow-sm)"
   },
   link: {
     padding: "8px 14px",
@@ -58,17 +58,17 @@ const styles = {
     textDecoration: "none",
     fontSize: "13px",
     fontWeight: "500",
-    color: "#586069",
+    color: "var(--text-secondary)",
     transition: "all 0.2s ease",
     whiteSpace: "nowrap"
   },
   active: {
-    backgroundColor: "#0366d6",
+    backgroundColor: "var(--primary)",
     color: "#ffffff"
   },
   highlight: {
-    backgroundColor: "#f0e6ff",
-    color: "#6f42c1",
+    backgroundColor: "var(--primary-light)",
+    color: "var(--primary)",
     fontWeight: "700"
   }
 };
