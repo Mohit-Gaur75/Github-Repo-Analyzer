@@ -12,6 +12,7 @@ function RepoNav() {
     { to: `/prs/${owner}/${repo}`, label: "🔀 Pull Requests" },
     { to: `/quality/${owner}/${repo}`, label: "✅ Quality" },
     { to: `/security/${owner}/${repo}`, label: "🔒 Security" },
+    { to: `/activity/${owner}/${repo}`, label: "📊 Activity" },
     { to: `/ai/${owner}/${repo}`, label: "🤖 AI Insights", highlight: true }
   ];
 

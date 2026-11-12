@@ -59,3 +59,12 @@ export const getSecurity = (owner, repo) =>
 
 export const getAIInsights = (owner, repo) =>
   API.get(`/ai/${owner}/${repo}`);
+
+export const getActivity = (owner, repo, perPage = 30) =>
+  API.get(`/activity/${owner}/${repo}?per_page=${perPage}`);
+
+// Returns the SSE URL — used directly with EventSource (not axios)
+export const getActivityStreamUrl = (owner, repo) => {
+  const base = import.meta.env.VITE_API_BASE_URL || "http://localhost:5001/api";
+  return `${base}/activity/${owner}/${repo}/stream`;
+};

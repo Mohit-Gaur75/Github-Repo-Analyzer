@@ -10,6 +10,7 @@ const prRoutes = require("./routes/pr.routes");
 const qualityRoutes = require("./routes/quality.routes");
 const securityRoutes = require("./routes/security.routes");
 const aiRoutes = require("./routes/ai.routes");
+const activityRoutes = require("./routes/activity.routes");
 const { errorHandler, notFound } = require("./middlewares/error.middleware");
 const { validateRequest, validateApiKey } = require("./middlewares/auth.middleware");
 const { setCacheHeaders, cacheResponse } = require("./middlewares/cache.middleware");
@@ -85,6 +86,11 @@ app.use("/api/prs", cacheResponse(600), prRoutes);
 app.use("/api/quality", cacheResponse(600), qualityRoutes);
 app.use("/api/security", cacheResponse(600), securityRoutes);
 app.use("/api/ai", cacheResponse(1800), aiRoutes); // AI insights cached 30 min
+// SSE stream route must bypass the cache middleware entirely
+app.use("/api/activity", (req, res, next) => {
+  if (req.path.endsWith("/stream")) return next(); // skip cache for SSE
+  return cacheResponse(60)(req, res, next);         // cache REST endpoint 60s
+}, activityRoutes);
 
 app.use(notFound);
 

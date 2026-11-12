@@ -10,6 +10,7 @@ import PullRequests from "./pages/PullRequests";
 import Quality from "./pages/Quality";
 import Security from "./pages/Security";
 import AIInsights from "./pages/AIInsights";
+import Activity from "./pages/Activity";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -54,6 +55,10 @@ function App() {
           <Route
             path="/ai/:owner/:repo"
             element={<AIInsights />}
+          />
+          <Route
+            path="/activity/:owner/:repo"
+            element={<Activity />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
