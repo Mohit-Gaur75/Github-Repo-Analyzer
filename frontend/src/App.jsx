@@ -13,6 +13,7 @@ import AIInsights from "./pages/AIInsights";
 import Activity from "./pages/Activity";
 import Trends from "./pages/Trends";
 import TechStack from "./pages/TechStack";
+import Releases from "./pages/Releases";
 import Compare from "./pages/Compare";
 import DeveloperProfile from "./pages/DeveloperProfile";
 import NotFound from "./pages/NotFound";
@@ -51,6 +52,10 @@ function App() {
           <Route
             path="/prs/:owner/:repo"
             element={<PullRequests />}
+          />
+          <Route
+            path="/releases/:owner/:repo"
+            element={<Releases />}
           />
           <Route
             path="/quality/:owner/:repo"

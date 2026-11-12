@@ -130,6 +130,7 @@ function Dashboard() {
                 { label: "Commits", path: `/commits/${owner}/${repo}` },
                 { label: "Contributors", path: `/contributors/${owner}/${repo}` },
                 { label: "Security", path: `/security/${owner}/${repo}` },
+                { label: "🏷️ Releases", path: `/releases/${owner}/${repo}` },
                 { label: "📈 Trends", path: `/trends/${owner}/${repo}` }
               ].map((item) => (
                 <button

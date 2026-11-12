@@ -11,6 +11,7 @@ function RepoNav() {
     { to: `/contributors/${owner}/${repo}`, label: "👥 Contributors" },
     { to: `/issues/${owner}/${repo}`, label: "🐛 Issues" },
     { to: `/prs/${owner}/${repo}`, label: "🔀 Pull Requests" },
+    { to: `/releases/${owner}/${repo}`, label: "🏷️ Releases" },
     { to: `/quality/${owner}/${repo}`, label: "✅ Quality" },
     { to: `/security/${owner}/${repo}`, label: "🔒 Security" },
     { to: `/trends/${owner}/${repo}`, label: "📈 Trends" },
