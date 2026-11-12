@@ -11,7 +11,8 @@ function RepoNav() {
     { to: `/issues/${owner}/${repo}`, label: "🐛 Issues" },
     { to: `/prs/${owner}/${repo}`, label: "🔀 Pull Requests" },
     { to: `/quality/${owner}/${repo}`, label: "✅ Quality" },
-    { to: `/security/${owner}/${repo}`, label: "🔒 Security" }
+    { to: `/security/${owner}/${repo}`, label: "🔒 Security" },
+    { to: `/ai/${owner}/${repo}`, label: "🤖 AI Insights", highlight: true }
   ];
 
   return (
@@ -23,7 +24,8 @@ function RepoNav() {
           end
           style={({ isActive }) => ({
             ...styles.link,
-            ...(isActive ? styles.active : {})
+            ...(isActive ? styles.active : {}),
+            ...(link.highlight && !isActive ? styles.highlight : {})
           })}
         >
           {link.label}
@@ -58,6 +60,11 @@ const styles = {
   active: {
     backgroundColor: "#0366d6",
     color: "#ffffff"
+  },
+  highlight: {
+    backgroundColor: "#f0e6ff",
+    color: "#6f42c1",
+    fontWeight: "700"
   }
 };
 

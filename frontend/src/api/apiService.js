@@ -56,3 +56,6 @@ export const getQuality = (owner, repo) =>
 
 export const getSecurity = (owner, repo) =>
   API.get(`/security/${owner}/${repo}`);
+
+export const getAIInsights = (owner, repo) =>
+  API.get(`/ai/${owner}/${repo}`);

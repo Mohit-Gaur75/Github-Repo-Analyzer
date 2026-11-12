@@ -9,6 +9,7 @@ import Issues from "./pages/Issues";
 import PullRequests from "./pages/PullRequests";
 import Quality from "./pages/Quality";
 import Security from "./pages/Security";
+import AIInsights from "./pages/AIInsights";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -49,6 +50,10 @@ function App() {
           <Route
             path="/security/:owner/:repo"
             element={<Security />}
+          />
+          <Route
+            path="/ai/:owner/:repo"
+            element={<AIInsights />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
