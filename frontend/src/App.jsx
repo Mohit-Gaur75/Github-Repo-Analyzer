@@ -11,6 +11,7 @@ import Quality from "./pages/Quality";
 import Security from "./pages/Security";
 import AIInsights from "./pages/AIInsights";
 import Activity from "./pages/Activity";
+import Trends from "./pages/Trends";
 import Compare from "./pages/Compare";
 import DeveloperProfile from "./pages/DeveloperProfile";
 import NotFound from "./pages/NotFound";
@@ -61,6 +62,10 @@ function App() {
           <Route
             path="/activity/:owner/:repo"
             element={<Activity />}
+          />
+          <Route
+            path="/trends/:owner/:repo"
+            element={<Trends />}
           />
           <Route
             path="/compare"

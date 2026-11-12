@@ -128,7 +128,8 @@ function Dashboard() {
                 { label: "Languages", path: `/languages/${owner}/${repo}` },
                 { label: "Commits", path: `/commits/${owner}/${repo}` },
                 { label: "Contributors", path: `/contributors/${owner}/${repo}` },
-                { label: "Security", path: `/security/${owner}/${repo}` }
+                { label: "Security", path: `/security/${owner}/${repo}` },
+                { label: "📈 Trends", path: `/trends/${owner}/${repo}` }
               ].map((item) => (
                 <button
                   key={item.label}
