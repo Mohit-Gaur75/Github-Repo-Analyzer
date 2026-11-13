@@ -182,6 +182,13 @@ function CommandPalette({ isOpen, onClose }) {
         label: "🏢 Organization Portfolio Dashboard",
         action: () => navigate("/org"),
         keywords: "organization org company enterprise portfolio team repos"
+      },
+      {
+        id: "nav-docs",
+        category: "Navigation",
+        label: "🔌 Public API Docs & Swagger Playground",
+        action: () => navigate("/docs"),
+        keywords: "api docs swagger openapi endpoints rest developer portal"
       }
     );
 

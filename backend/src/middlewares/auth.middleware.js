@@ -1,3 +1,5 @@
+const { isValidDemoKey } = require("../services/docs.service");
+
 const validateRequest = (req, res, next) => {
   const { owner, repo } = req.params;
 
@@ -25,10 +27,15 @@ const validateRequest = (req, res, next) => {
 const validateApiKey = (req, res, next) => {
   const apiKey = req.headers["x-api-key"];
 
-  if (!apiKey || apiKey !== process.env.API_KEY) {
+  const isValid =
+    (apiKey && process.env.API_KEY && apiKey === process.env.API_KEY) ||
+    isValidDemoKey(apiKey);
+
+  if (!isValid) {
     return res.status(401).json({
       success: false,
-      error: "Unauthorized - Invalid API Key"
+      error: "Unauthorized - Invalid API Key",
+      hint: "Generate an API key at /docs or provide a valid X-API-Key header"
     });
   }
 

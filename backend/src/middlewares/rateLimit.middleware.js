@@ -16,6 +16,9 @@ const generalRateLimit = (req, res, next) => {
 
   if (!requestCounts.has(ip)) {
     requestCounts.set(ip, { count: 1, resetTime: now + windowMs });
+    res.setHeader("X-RateLimit-Limit", maxRequests);
+    res.setHeader("X-RateLimit-Remaining", maxRequests - 1);
+    res.setHeader("X-RateLimit-Reset", Math.ceil((now + windowMs) / 1000));
     return next();
   }
 
@@ -23,10 +26,19 @@ const generalRateLimit = (req, res, next) => {
 
   if (now > record.resetTime) {
     requestCounts.set(ip, { count: 1, resetTime: now + windowMs });
+    res.setHeader("X-RateLimit-Limit", maxRequests);
+    res.setHeader("X-RateLimit-Remaining", maxRequests - 1);
+    res.setHeader("X-RateLimit-Reset", Math.ceil((now + windowMs) / 1000));
     return next();
   }
 
+  const remaining = Math.max(0, maxRequests - record.count);
+  res.setHeader("X-RateLimit-Limit", maxRequests);
+  res.setHeader("X-RateLimit-Remaining", remaining);
+  res.setHeader("X-RateLimit-Reset", Math.ceil(record.resetTime / 1000));
+
   if (record.count >= maxRequests) {
+    res.setHeader("Retry-After", Math.ceil((record.resetTime - now) / 1000));
     return res.status(429).json({
       success: false,
       error: "Too many requests. Please wait 15 minutes before trying again.",

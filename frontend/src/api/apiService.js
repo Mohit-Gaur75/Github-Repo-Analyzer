@@ -120,3 +120,9 @@ export const getBadgeSvgUrl = (owner, repo, metric, style = "flat") => {
 
 export const getOrgPortfolio = (org) =>
   API.get(`/org/${org}`);
+
+export const getApiDocsSpec = () =>
+  API.get("/docs/spec");
+
+export const generateDemoApiKey = () =>
+  API.post("/docs/keys/generate");

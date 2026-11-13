@@ -25,6 +25,7 @@ import DeveloperProfile from "./pages/DeveloperProfile";
 import OrgDashboard from "./pages/OrgDashboard";
 import Watchlist from "./pages/Watchlist";
 import Discovery from "./pages/Discovery";
+import ApiDocs from "./pages/ApiDocs";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -152,6 +153,14 @@ function App() {
           <Route
             path="/trending"
             element={<Discovery />}
+          />
+          <Route
+            path="/docs"
+            element={<ApiDocs />}
+          />
+          <Route
+            path="/api-docs"
+            element={<ApiDocs />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
