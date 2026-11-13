@@ -1,5 +1,7 @@
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import CommandPalette from "./components/CommandPalette";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Languages from "./pages/Languages";
@@ -22,9 +24,24 @@ import Discovery from "./pages/Discovery";
 import NotFound from "./pages/NotFound";
 
 function App() {
+  const [paletteOpen, setPaletteOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // Ctrl+K or Cmd+K
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setPaletteOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <div className="app">
-      <Navbar />
+      <Navbar onOpenPalette={() => setPaletteOpen(true)} />
+      <CommandPalette isOpen={paletteOpen} onClose={() => setPaletteOpen(false)} />
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />

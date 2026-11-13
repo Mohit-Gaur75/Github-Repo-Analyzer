@@ -24,6 +24,21 @@ const githubRequest = async (endpoint, customConfig = {}) => {
         throw new Error("GitHub API rate limit exceeded. Try again later.");
       }
       if (status === 401) {
+        // If a configured token failed authentication, attempt unauthenticated fallback for public endpoints
+        if (githubConfig.headers && githubConfig.headers.Authorization) {
+          try {
+            const unauthHeaders = { ...githubConfig.headers, ...(customConfig.headers || {}) };
+            delete unauthHeaders.Authorization;
+            const retryRes = await axios.get(`${GITHUB_BASE_URL}${endpoint}`, {
+              ...githubConfig,
+              ...customConfig,
+              headers: unauthHeaders
+            });
+            return retryRes.data;
+          } catch {
+            // proceed to standard 401 error
+          }
+        }
         throw new Error("GitHub API authentication failed");
       }
       throw new Error(`GitHub API error: ${error.response.data.message}`);

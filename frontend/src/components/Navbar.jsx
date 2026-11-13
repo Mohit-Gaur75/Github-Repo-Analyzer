@@ -4,7 +4,7 @@ import { parseGitHubUrl } from "../utils/helpers";
 import ThemeToggle from "./ThemeToggle";
 import { useWatchlist } from "../context/watchlistContext";
 
-function Navbar() {
+function Navbar({ onOpenPalette }) {
   const [search, setSearch] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -53,6 +53,15 @@ function Navbar() {
             🔍 Analyze
           </button>
         </form>
+        <button
+          type="button"
+          onClick={onOpenPalette}
+          title="Open Command Palette (Ctrl+K or ⌘K)"
+          style={styles.paletteBtn}
+        >
+          <span>⌨️</span>
+          <kbd style={styles.kbd}>Ctrl K</kbd>
+        </button>
         <ThemeToggle />
       </div>
       {error && <div style={styles.error}>{error}</div>}
@@ -133,6 +142,28 @@ const styles = {
     fontWeight: "600",
     fontSize: "14px",
     whiteSpace: "nowrap"
+  },
+  paletteBtn: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "6px",
+    padding: "6px 10px",
+    borderRadius: "6px",
+    border: "1px solid rgba(255, 255, 255, 0.2)",
+    backgroundColor: "rgba(255, 255, 255, 0.08)",
+    color: "#e1e4e8",
+    cursor: "pointer",
+    fontSize: "12px",
+    fontWeight: "500",
+    transition: "background 0.2s"
+  },
+  kbd: {
+    backgroundColor: "rgba(0, 0, 0, 0.25)",
+    border: "1px solid rgba(255, 255, 255, 0.2)",
+    borderRadius: "4px",
+    padding: "1px 5px",
+    fontSize: "10px",
+    fontFamily: "monospace"
   },
   error: {
     color: "#ff6b6b",
