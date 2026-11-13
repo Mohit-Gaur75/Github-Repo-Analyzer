@@ -2,12 +2,10 @@ const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
-    const mongoUri=process.env.MONGO_URI;
+    const mongoUri = process.env.MONGO_URI || "mongodb://localhost:27017/github-analyzer";
     const conn = await mongoose.connect(mongoUri, {
       serverSelectionTimeoutMS: 10000,
       socketTimeoutMS: 45000,
-      retryWrites: true,
-      w: "majority",
       maxPoolSize: 10,
       minPoolSize: 5
     });
