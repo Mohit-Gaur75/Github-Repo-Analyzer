@@ -42,6 +42,9 @@ export const getLanguages = (owner, repo) =>
 export const getCommits = (owner, repo) =>
   API.get(`/commits/${owner}/${repo}`);
 
+export const getCommitCalendar = (owner, repo) =>
+  API.get(`/commits/${owner}/${repo}/calendar`);
+
 export const getContributors = (owner, repo) =>
   API.get(`/contributors/${owner}/${repo}`);
 

@@ -88,6 +88,13 @@ function CommandPalette({ isOpen, onClose }) {
           keywords: "activity real-time live events feed commits"
         },
         {
+          id: "repo-commits",
+          category: `Current Repo (${currentFullName})`,
+          label: "📝 Commit Heatmap & Punchcard",
+          action: () => navigate(`/commits/${currentOwner}/${currentRepo}`),
+          keywords: "commits calendar heatmap punchcard streak activity cadence"
+        },
+        {
           id: "repo-releases",
           category: `Current Repo (${currentFullName})`,
           label: "🏷️ Releases & Versioning",
