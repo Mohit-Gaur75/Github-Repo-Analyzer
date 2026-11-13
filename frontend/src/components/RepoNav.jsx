@@ -15,6 +15,7 @@ function RepoNav() {
     { to: `/quality/${owner}/${repo}`, label: "✅ Quality" },
     { to: `/complexity/${owner}/${repo}`, label: "🗺️ Complexity" },
     { to: `/security/${owner}/${repo}`, label: "🔒 Security" },
+    { to: `/sbom/${owner}/${repo}`, label: "📦 SBOM" },
     { to: `/trends/${owner}/${repo}`, label: "📈 Trends" },
     { to: `/report/${owner}/${repo}`, label: "📑 Audit Report" },
     { to: `/activity/${owner}/${repo}`, label: "📊 Activity" },

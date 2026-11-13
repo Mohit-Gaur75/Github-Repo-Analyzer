@@ -35,8 +35,13 @@ const githubRequest = async (endpoint, customConfig = {}) => {
               headers: unauthHeaders
             });
             return retryRes.data;
-          } catch {
-            // proceed to standard 401 error
+          } catch (retryErr) {
+            if (retryErr.response?.status === 404) {
+              throw new Error("Repository not found");
+            }
+            if (retryErr.response?.status === 403) {
+              throw new Error("GitHub API rate limit exceeded. Try again later.");
+            }
           }
         }
         throw new Error("GitHub API authentication failed");

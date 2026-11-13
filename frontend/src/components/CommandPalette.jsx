@@ -17,7 +17,7 @@ function CommandPalette({ isOpen, onClose }) {
 
   // Detect current repo if active on a repo page
   const repoMatch = location.pathname.match(
-    /\/(dashboard|languages|techstack|commits|contributors|issues|prs|releases|quality|complexity|security|ai|activity|trends|report)\/([^/]+)\/([^/]+)/
+    /\/(dashboard|languages|techstack|commits|contributors|issues|prs|releases|quality|complexity|security|sbom|ai|activity|trends|report)\/([^/]+)\/([^/]+)/
   );
   const currentOwner = repoMatch ? repoMatch[2] : null;
   const currentRepo = repoMatch ? repoMatch[3] : null;
@@ -51,6 +51,13 @@ function CommandPalette({ isOpen, onClose }) {
           label: "🔒 Security & CVE Scan",
           action: () => navigate(`/security/${currentOwner}/${currentRepo}`),
           keywords: "security cve vulnerabilities osv dependencies"
+        },
+        {
+          id: "repo-sbom",
+          category: `Current Repo (${currentFullName})`,
+          label: "📦 Software Bill of Materials (SBOM)",
+          action: () => navigate(`/sbom/${currentOwner}/${currentRepo}`),
+          keywords: "sbom software bill materials spdx cyclonedx packages dependencies purl"
         },
         {
           id: "repo-techstack",

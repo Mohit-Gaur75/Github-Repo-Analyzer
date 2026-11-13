@@ -95,3 +95,11 @@ export const getTrendingRepos = (params = {}) =>
 
 export const getCodeComplexity = (owner, repo) =>
   API.get(`/complexity/${owner}/${repo}`);
+
+export const getSBOM = (owner, repo) =>
+  API.get(`/sbom/${owner}/${repo}`);
+
+export const getSBOMDownloadUrl = (owner, repo, format = "spdx") => {
+  const base = import.meta.env.VITE_API_BASE_URL || "http://localhost:5001/api";
+  return `${base}/sbom/${owner}/${repo}/${format}`;
+};

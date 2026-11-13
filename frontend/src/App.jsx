@@ -12,6 +12,7 @@ import PullRequests from "./pages/PullRequests";
 import Quality from "./pages/Quality";
 import Complexity from "./pages/Complexity";
 import Security from "./pages/Security";
+import SBOM from "./pages/SBOM";
 import AIInsights from "./pages/AIInsights";
 import Activity from "./pages/Activity";
 import Trends from "./pages/Trends";
@@ -89,6 +90,10 @@ function App() {
           <Route
             path="/security/:owner/:repo"
             element={<Security />}
+          />
+          <Route
+            path="/sbom/:owner/:repo"
+            element={<SBOM />}
           />
           <Route
             path="/ai/:owner/:repo"
