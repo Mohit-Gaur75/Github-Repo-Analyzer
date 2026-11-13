@@ -17,7 +17,7 @@ function CommandPalette({ isOpen, onClose }) {
 
   // Detect current repo if active on a repo page
   const repoMatch = location.pathname.match(
-    /\/(dashboard|languages|techstack|commits|contributors|issues|prs|releases|quality|complexity|security|sbom|ai|activity|trends|report)\/([^/]+)\/([^/]+)/
+    /\/(dashboard|languages|techstack|commits|contributors|issues|prs|releases|quality|ci|complexity|security|sbom|ai|activity|trends|report)\/([^/]+)\/([^/]+)/
   );
   const currentOwner = repoMatch ? repoMatch[2] : null;
   const currentRepo = repoMatch ? repoMatch[3] : null;
@@ -65,6 +65,13 @@ function CommandPalette({ isOpen, onClose }) {
           label: "🛠️ Tech Stack & Architecture",
           action: () => navigate(`/techstack/${currentOwner}/${currentRepo}`),
           keywords: "tech stack architecture dependencies frameworks"
+        },
+        {
+          id: "repo-ci",
+          category: `Current Repo (${currentFullName})`,
+          label: "🧪 CI/CD & GitHub Actions Workflows",
+          action: () => navigate(`/ci/${currentOwner}/${currentRepo}`),
+          keywords: "ci cd continuous integration github actions workflows pipeline build test"
         },
         {
           id: "repo-complexity",

@@ -57,6 +57,9 @@ export const getPullRequests = (owner, repo) =>
 export const getQuality = (owner, repo) =>
   API.get(`/quality/${owner}/${repo}`);
 
+export const getCIHealth = (owner, repo) =>
+  API.get(`/ci/${owner}/${repo}`);
+
 export const getSecurity = (owner, repo) =>
   API.get(`/security/${owner}/${repo}`);
 

@@ -10,6 +10,7 @@ import Contributors from "./pages/Contributors";
 import Issues from "./pages/Issues";
 import PullRequests from "./pages/PullRequests";
 import Quality from "./pages/Quality";
+import CIHealth from "./pages/CIHealth";
 import Complexity from "./pages/Complexity";
 import Security from "./pages/Security";
 import SBOM from "./pages/SBOM";
@@ -83,6 +84,10 @@ function App() {
           <Route
             path="/quality/:owner/:repo"
             element={<Quality />}
+          />
+          <Route
+            path="/ci/:owner/:repo"
+            element={<CIHealth />}
           />
           <Route
             path="/complexity/:owner/:repo"
