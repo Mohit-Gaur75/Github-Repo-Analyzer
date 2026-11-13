@@ -189,6 +189,13 @@ function CommandPalette({ isOpen, onClose }) {
         label: "🔌 Public API Docs & Swagger Playground",
         action: () => navigate("/docs"),
         keywords: "api docs swagger openapi endpoints rest developer portal"
+      },
+      {
+        id: "nav-alerts",
+        category: "Navigation",
+        label: "🔔 Webhook & Notification Alert Center",
+        action: () => navigate("/alerts"),
+        keywords: "alerts webhooks notifications slack discord notifications delivery"
       }
     );
 

@@ -26,6 +26,7 @@ import OrgDashboard from "./pages/OrgDashboard";
 import Watchlist from "./pages/Watchlist";
 import Discovery from "./pages/Discovery";
 import ApiDocs from "./pages/ApiDocs";
+import Alerts from "./pages/Alerts";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -161,6 +162,14 @@ function App() {
           <Route
             path="/api-docs"
             element={<ApiDocs />}
+          />
+          <Route
+            path="/alerts"
+            element={<Alerts />}
+          />
+          <Route
+            path="/webhooks"
+            element={<Alerts />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>

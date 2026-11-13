@@ -126,3 +126,21 @@ export const getApiDocsSpec = () =>
 
 export const generateDemoApiKey = () =>
   API.post("/docs/keys/generate");
+
+export const getAlertSubscriptions = () =>
+  API.get("/webhooks/subscriptions");
+
+export const createAlertSubscription = (data) =>
+  API.post("/webhooks/subscriptions", data);
+
+export const updateAlertSubscription = (id, data) =>
+  API.put(`/webhooks/subscriptions/${id}`, data);
+
+export const deleteAlertSubscription = (id) =>
+  API.delete(`/webhooks/subscriptions/${id}`);
+
+export const testWebhookAlert = (data) =>
+  API.post("/webhooks/test", data);
+
+export const getAlertHistory = () =>
+  API.get("/webhooks/history");

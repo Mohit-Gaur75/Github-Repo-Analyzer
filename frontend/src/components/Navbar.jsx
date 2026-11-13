@@ -43,6 +43,9 @@ function Navbar({ onOpenPalette }) {
         <Link to="/docs" style={styles.navLink}>
           🔌 API
         </Link>
+        <Link to="/alerts" style={styles.navLink}>
+          🔔 Alerts
+        </Link>
         <Link to="/watchlist" style={styles.navLink}>
           🔖 Watchlist
           {count > 0 && <span style={styles.counter}>{count}</span>}
