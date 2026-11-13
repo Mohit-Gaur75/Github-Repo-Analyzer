@@ -37,6 +37,9 @@ function Navbar({ onOpenPalette }) {
         <Link to="/user" style={styles.navLink}>
           👤 Dev Profile
         </Link>
+        <Link to="/org" style={styles.navLink}>
+          🏢 Org
+        </Link>
         <Link to="/watchlist" style={styles.navLink}>
           🔖 Watchlist
           {count > 0 && <span style={styles.counter}>{count}</span>}

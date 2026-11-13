@@ -22,6 +22,7 @@ const discoveryRoutes = require("./routes/discovery.routes");
 const complexityRoutes = require("./routes/complexity.routes");
 const sbomRoutes = require("./routes/sbom.routes");
 const badgeRoutes = require("./routes/badge.routes");
+const orgRoutes = require("./routes/org.routes");
 const { errorHandler, notFound } = require("./middlewares/error.middleware");
 const { validateRequest, validateApiKey } = require("./middlewares/auth.middleware");
 const { setCacheHeaders, cacheResponse } = require("./middlewares/cache.middleware");
@@ -108,6 +109,7 @@ app.use("/api/discovery", cacheResponse(300), discoveryRoutes);
 app.use("/api/complexity", cacheResponse(600), complexityRoutes);
 app.use("/api/sbom", cacheResponse(600), sbomRoutes);
 app.use("/api/badge", badgeRoutes);
+app.use("/api/org", cacheResponse(600), orgRoutes);
 // SSE stream route must bypass the cache middleware entirely
 app.use("/api/activity", (req, res, next) => {
   if (req.path.endsWith("/stream")) return next(); // skip cache for SSE

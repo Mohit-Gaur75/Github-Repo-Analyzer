@@ -111,3 +111,6 @@ export const getBadgeSvgUrl = (owner, repo, metric, style = "flat") => {
   const base = import.meta.env.VITE_API_BASE_URL || "http://localhost:5001/api";
   return `${base}/badge/${owner}/${repo}/${metric}?style=${style}`;
 };
+
+export const getOrgPortfolio = (org) =>
+  API.get(`/org/${org}`);

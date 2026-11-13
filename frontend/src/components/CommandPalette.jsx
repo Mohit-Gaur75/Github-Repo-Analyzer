@@ -161,6 +161,13 @@ function CommandPalette({ isOpen, onClose }) {
         label: "👤 Developer Profile Analyzer",
         action: () => navigate("/user"),
         keywords: "user developer profile maintainer github account"
+      },
+      {
+        id: "nav-org",
+        category: "Navigation",
+        label: "🏢 Organization Portfolio Dashboard",
+        action: () => navigate("/org"),
+        keywords: "organization org company enterprise portfolio team repos"
       }
     );
 

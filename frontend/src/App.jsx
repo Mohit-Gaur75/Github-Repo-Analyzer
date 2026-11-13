@@ -21,6 +21,7 @@ import Releases from "./pages/Releases";
 import Report from "./pages/Report";
 import Compare from "./pages/Compare";
 import DeveloperProfile from "./pages/DeveloperProfile";
+import OrgDashboard from "./pages/OrgDashboard";
 import Watchlist from "./pages/Watchlist";
 import Discovery from "./pages/Discovery";
 import NotFound from "./pages/NotFound";
@@ -126,6 +127,14 @@ function App() {
           <Route
             path="/user/:username"
             element={<DeveloperProfile />}
+          />
+          <Route
+            path="/org"
+            element={<OrgDashboard />}
+          />
+          <Route
+            path="/org/:org"
+            element={<OrgDashboard />}
           />
           <Route
             path="/watchlist"
