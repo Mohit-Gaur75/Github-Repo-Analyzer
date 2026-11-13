@@ -92,3 +92,6 @@ export const getActivityStreamUrl = (owner, repo) => {
 
 export const getTrendingRepos = (params = {}) =>
   API.get("/discovery/trending", { params });
+
+export const getCodeComplexity = (owner, repo) =>
+  API.get(`/complexity/${owner}/${repo}`);

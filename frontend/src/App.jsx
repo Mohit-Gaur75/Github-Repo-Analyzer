@@ -10,6 +10,7 @@ import Contributors from "./pages/Contributors";
 import Issues from "./pages/Issues";
 import PullRequests from "./pages/PullRequests";
 import Quality from "./pages/Quality";
+import Complexity from "./pages/Complexity";
 import Security from "./pages/Security";
 import AIInsights from "./pages/AIInsights";
 import Activity from "./pages/Activity";
@@ -80,6 +81,10 @@ function App() {
           <Route
             path="/quality/:owner/:repo"
             element={<Quality />}
+          />
+          <Route
+            path="/complexity/:owner/:repo"
+            element={<Complexity />}
           />
           <Route
             path="/security/:owner/:repo"

@@ -13,6 +13,7 @@ function RepoNav() {
     { to: `/prs/${owner}/${repo}`, label: "🔀 Pull Requests" },
     { to: `/releases/${owner}/${repo}`, label: "🏷️ Releases" },
     { to: `/quality/${owner}/${repo}`, label: "✅ Quality" },
+    { to: `/complexity/${owner}/${repo}`, label: "🗺️ Complexity" },
     { to: `/security/${owner}/${repo}`, label: "🔒 Security" },
     { to: `/trends/${owner}/${repo}`, label: "📈 Trends" },
     { to: `/report/${owner}/${repo}`, label: "📑 Audit Report" },
