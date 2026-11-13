@@ -18,6 +18,7 @@ const techstackRoutes = require("./routes/techstack.routes");
 const releaseRoutes = require("./routes/release.routes");
 const reportRoutes = require("./routes/report.routes");
 const watchlistRoutes = require("./routes/watchlist.routes");
+const discoveryRoutes = require("./routes/discovery.routes");
 const { errorHandler, notFound } = require("./middlewares/error.middleware");
 const { validateRequest, validateApiKey } = require("./middlewares/auth.middleware");
 const { setCacheHeaders, cacheResponse } = require("./middlewares/cache.middleware");
@@ -100,6 +101,7 @@ app.use("/api/techstack", cacheResponse(600), techstackRoutes);
 app.use("/api/releases", cacheResponse(600), releaseRoutes);
 app.use("/api/report", cacheResponse(300), reportRoutes);
 app.use("/api/watchlist", watchlistRoutes);
+app.use("/api/discovery", cacheResponse(300), discoveryRoutes);
 // SSE stream route must bypass the cache middleware entirely
 app.use("/api/activity", (req, res, next) => {
   if (req.path.endsWith("/stream")) return next(); // skip cache for SSE

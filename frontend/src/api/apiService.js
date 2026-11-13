@@ -89,3 +89,6 @@ export const getActivityStreamUrl = (owner, repo) => {
   const base = import.meta.env.VITE_API_BASE_URL || "http://localhost:5001/api";
   return `${base}/activity/${owner}/${repo}/stream`;
 };
+
+export const getTrendingRepos = (params = {}) =>
+  API.get("/discovery/trending", { params });

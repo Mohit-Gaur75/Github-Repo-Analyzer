@@ -18,6 +18,7 @@ import Report from "./pages/Report";
 import Compare from "./pages/Compare";
 import DeveloperProfile from "./pages/DeveloperProfile";
 import Watchlist from "./pages/Watchlist";
+import Discovery from "./pages/Discovery";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -102,6 +103,14 @@ function App() {
           <Route
             path="/watchlist"
             element={<Watchlist />}
+          />
+          <Route
+            path="/discover"
+            element={<Discovery />}
+          />
+          <Route
+            path="/trending"
+            element={<Discovery />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>

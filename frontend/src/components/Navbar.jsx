@@ -28,6 +28,9 @@ function Navbar() {
         <Link to="/" style={styles.logo}>
           📊 GitHub Analyzer
         </Link>
+        <Link to="/discover" style={styles.navLink}>
+          🔥 Trending
+        </Link>
         <Link to="/compare" style={styles.navLink}>
           ⚔️ Compare
         </Link>
