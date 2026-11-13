@@ -5,6 +5,7 @@ import { formatNumber } from "../utils/helpers";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorMessage from "../components/ErrorMessage";
 import RepoNav from "../components/RepoNav";
+import BadgeShareModal from "../components/BadgeShareModal";
 
 function Report() {
   const { owner, repo } = useParams();
@@ -13,6 +14,7 @@ function Report() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
+  const [badgeModalOpen, setBadgeModalOpen] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -125,11 +127,21 @@ ${data.recommendations.map((r, i) => `${i + 1}. **[${r.priority}] ${r.area}**: $
             <button onClick={handleDownloadJSON} className="btn btn-secondary btn-sm" style={{ fontWeight: "600" }}>
               💾 Export JSON
             </button>
+            <button onClick={() => setBadgeModalOpen(true)} className="btn btn-secondary btn-sm" style={{ fontWeight: "600" }}>
+              🧾 Badges & Share
+            </button>
           </div>
         </div>
 
         <RepoNav />
       </div>
+
+      <BadgeShareModal
+        isOpen={badgeModalOpen}
+        onClose={() => setBadgeModalOpen(false)}
+        owner={owner}
+        repo={repo}
+      />
 
       {/* Printable Report Canvas */}
       <div

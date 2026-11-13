@@ -6,6 +6,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import RepoNav from "../components/RepoNav";
 import StatCard from "../components/StatCard";
 import WatchlistButton from "../components/WatchlistButton";
+import BadgeShareModal from "../components/BadgeShareModal";
 import { formatNumber, formatDate, timeAgo } from "../utils/helpers";
 
 function Dashboard() {
@@ -14,6 +15,7 @@ function Dashboard() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [badgeModalOpen, setBadgeModalOpen] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -157,6 +159,13 @@ function Dashboard() {
               <button
                 className="btn btn-secondary btn-sm"
                 style={{ width: "100%", justifyContent: "center" }}
+                onClick={() => setBadgeModalOpen(true)}
+              >
+                🧾 README Badges & Share Card
+              </button>
+              <button
+                className="btn btn-secondary btn-sm"
+                style={{ width: "100%", justifyContent: "center" }}
                 onClick={() => navigate(`/compare/${owner}/${repo}/vuejs/core`)}
               >
                 ⚔️ Compare with another repo
@@ -165,6 +174,13 @@ function Dashboard() {
           </div>
         </div>
       </div>
+
+      <BadgeShareModal
+        isOpen={badgeModalOpen}
+        onClose={() => setBadgeModalOpen(false)}
+        owner={owner}
+        repo={repo}
+      />
     </div>
   );
 }

@@ -109,6 +109,13 @@ function CommandPalette({ isOpen, onClose }) {
           keywords: "report audit pdf export print executive"
         },
         {
+          id: "repo-badges",
+          category: `Current Repo (${currentFullName})`,
+          label: "🧾 README Badges & Share Card",
+          action: () => navigate(`/dashboard/${currentOwner}/${currentRepo}`),
+          keywords: "badges readme markdown svg shields share embed"
+        },
+        {
           id: "repo-watchlist-toggle",
           category: `Current Repo (${currentFullName})`,
           label: currentSaved ? "⭐ Remove from Watchlist" : "⭐ Save to Watchlist",
