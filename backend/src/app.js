@@ -76,7 +76,7 @@ app.use(setCacheHeaders);
 app.use(validateRequest);
 
 // API key validation: only enforce if explicitly required
-const requireApiKey = process.env.REQUIRE_API_KEY === "true" || process.env.NODE_ENV === "production";
+const requireApiKey = process.env.REQUIRE_API_KEY === "true";
 if (requireApiKey) {
   app.use(validateApiKey);
 }
