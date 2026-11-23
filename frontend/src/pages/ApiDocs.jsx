@@ -162,7 +162,7 @@ export default function ApiDocs() {
     actualPath = actualPath.replace("{org}", testParams.owner || "facebook");
     actualPath = actualPath.replace("{username}", testParams.owner || "gaearon");
 
-    const baseUrl = "http://localhost:5001/api";
+    const baseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:5001/api";
     const fullUrl = `${baseUrl}${actualPath}`;
     const headerStr = apiKey ? ` -H "X-API-Key: ${apiKey}"` : "";
 
@@ -219,7 +219,7 @@ print(data)`;
         </div>
         <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
           <a
-            href="http://localhost:5001/api/docs"
+            href={`${import.meta.env.VITE_API_BASE_URL || "http://localhost:5001/api"}/docs`}
             target="_blank"
             rel="noreferrer"
             className="btn btn-secondary"
@@ -228,7 +228,7 @@ print(data)`;
             📑 Swagger UI View
           </a>
           <a
-            href="http://localhost:5001/api/docs/spec"
+            href={`${import.meta.env.VITE_API_BASE_URL || "http://localhost:5001/api"}/docs/spec`}
             target="_blank"
             rel="noreferrer"
             className="btn btn-outline"
